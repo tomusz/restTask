@@ -3,6 +3,10 @@ package com.restTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
+import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,6 +20,19 @@ public class BaseTest {
 
     protected static final String USERS_OCTOCAT = "https://api.github.com/users/octocat";
 
+    @Test
+    public void smokeTest() {
+        RestAssured.given().get(USERS_OCTOCAT)
+                .then()
+                .time(Matchers.lessThan(2L), TimeUnit.SECONDS);
+    }
+
+    /**
+     * Method for geting the response by provided endpoint
+     *
+     * @param endpoint to be validated
+     * @return Response for further validation
+     */
     protected static Response doGetResponse(String endpoint) {
 
         return RestAssured

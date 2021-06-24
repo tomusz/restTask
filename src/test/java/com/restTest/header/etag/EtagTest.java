@@ -4,6 +4,11 @@ import com.restTest.BaseTest;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 
+/**
+ * Validation of etag from header fields
+ *
+ * @author date
+ */
 import static org.hamcrest.Matchers.*;
 
 public class EtagTest extends BaseTest {
