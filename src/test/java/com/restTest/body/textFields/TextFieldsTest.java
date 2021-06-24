@@ -2,6 +2,7 @@ package com.restTest.body.textFields;
 
 import com.restTest.BaseTest;
 import io.restassured.response.Response;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
@@ -37,13 +38,18 @@ public class TextFieldsTest extends BaseTest {
         assertTrue(result.contains("@"));
     }
 
+    @DataProvider(name = "inputValidation")
+    private Object[][] inputValidation() {
+        return new Object[][] {
+                {"login" , "octocat"},
+                {"node_id" , "MDQ6VXNlcjU4MzIzMQ=="},
+                {"name" , "The Octocat"},
+                {"company" , "@github"}};
+    }
 
-    @Test
-    public void validationOfBaseFields() {
-        validationOfTextFieldValues("login" , "octocat");
-        validationOfTextFieldValues("node_id" , "MDQ6VXNlcjU4MzIzMQ==");
-        validationOfTextFieldValues("name" , "The Octocat");
-        validationOfTextFieldValues("company" , "@github");
+    @Test(dataProvider = "inputValidation")
+    public void validationOfBaseFields(String field, String expectedValue) {
+        validationOfTextFieldValues(field , expectedValue);
     }
 
     @Test
