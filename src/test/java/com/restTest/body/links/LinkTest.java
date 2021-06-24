@@ -1,11 +1,10 @@
-package com.restTest.links;
+package com.restTest.body.links;
 
 import com.restTest.BaseTest;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.startsWith;
 
 /**
@@ -17,7 +16,7 @@ public class LinkTest extends BaseTest {
 
     @Test
     public void doesLinkHasSecurePrefix() {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         String loginValue = response.jsonPath().getString("html_url");
         assertThat(loginValue, startsWith("https://"));
     }

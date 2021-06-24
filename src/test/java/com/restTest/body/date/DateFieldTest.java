@@ -1,4 +1,4 @@
-package com.restTest.date;
+package com.restTest.body.date;
 
 import com.restTest.BaseTest;
 import io.restassured.response.Response;
@@ -50,7 +50,7 @@ public class DateFieldTest extends BaseTest {
      * @param fieldName to be validate
      */
  private void dateIsRequired(String fieldName) {
-     Response response = doGetResponse(END_POINT);
+     Response response = doGetResponse(USERS_OCTOCAT);
      String result = response.jsonPath().getString(fieldName);
      assertThat(result, not(nullValue()));
  }
@@ -61,7 +61,7 @@ public class DateFieldTest extends BaseTest {
      * @param date to be validated
      */
  private void validationOfDateFormat(String date) {
-     Response response = doGetResponse(END_POINT);
+     Response response = doGetResponse(USERS_OCTOCAT);
      String result = response.jsonPath().getString(date);
      Matcher matcher = pattern.matcher(result);
      assertTrue(matcher.matches());

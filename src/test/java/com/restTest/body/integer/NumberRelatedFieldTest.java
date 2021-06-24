@@ -1,4 +1,4 @@
-package com.restTest.integer;
+package com.restTest.body.integer;
 
 import com.restTest.BaseTest;
 import io.restassured.response.Response;
@@ -16,14 +16,14 @@ public class NumberRelatedFieldTest extends BaseTest {
 
     @Test
     public void isNotNullValue () {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         int loginValue = response.jsonPath().getInt("public_repos");
         assertThat(loginValue, notNullValue());
     }
 
     @Test
     public void isNotLessThenZero () {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         int loginValue = response.jsonPath().getInt("public_repos");
         assertThat(loginValue, greaterThanOrEqualTo(0));
     }

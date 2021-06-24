@@ -2,7 +2,6 @@ package com.restTest;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,10 +14,9 @@ import static org.hamcrest.Matchers.equalTo;
  */
 public class BaseTest {
 
-    protected static final String END_POINT = "https://api.github.com/users/octocat";
+    protected static final String USERS_OCTOCAT = "https://api.github.com/users/octocat";
 
     protected static Response doGetResponse(String endpoint) {
-        RestAssured.defaultParser = Parser.JSON;
 
         return RestAssured
                 .given().header("Content-Type", ContentType.JSON, //
@@ -35,7 +33,7 @@ public class BaseTest {
      */
     protected void validationOfTextFieldValues(String fieldName,
                                              String expectedValue) {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         String result = response.jsonPath().getString(fieldName);
         assertThat(expectedValue, equalTo(result));
     }

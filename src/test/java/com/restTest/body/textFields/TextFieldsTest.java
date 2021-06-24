@@ -1,4 +1,4 @@
-package com.restTest.textFields;
+package com.restTest.body.textFields;
 
 import com.restTest.BaseTest;
 import io.restassured.response.Response;
@@ -18,21 +18,21 @@ public class TextFieldsTest extends BaseTest {
 
     @Test
     public void isLoginAsExpected() {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         String loginValue = response.jsonPath().getString("login");
         assertThat(loginValue, equalTo("octocat"));
     }
 
     @Test
     public void emailIsRequired() {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         String result = response.jsonPath().getString("email");
         assertThat(result, not(nullValue()));
     }
 
     @Test
     public void doesEmailAddressHasSpecialSign() {
-        Response response = doGetResponse(END_POINT);
+        Response response = doGetResponse(USERS_OCTOCAT);
         String result = response.jsonPath().getString("email");
         assertTrue(result.contains("@"));
     }

@@ -15,21 +15,21 @@ public class StatusCodesTest extends BaseTest {
 
     @Test
     public void statusCode() {
-        RestAssured.get(END_POINT)
+        RestAssured.get(USERS_OCTOCAT)
                 .then()
                 .statusCode(200);
     }
 
     @Test
     public void statusCodeIsNotNotFound() {
-        RestAssured.get(END_POINT)
+        RestAssured.get(USERS_OCTOCAT)
                 .then()
                 .statusCode(not(404));
     }
 
     @Test
     public void statusCodeIsNotServer() {
-        RestAssured.get(END_POINT)
+        RestAssured.get(USERS_OCTOCAT)
                 .then()
                 .statusCode(not(500));
     }
